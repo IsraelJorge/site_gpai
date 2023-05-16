@@ -1,6 +1,8 @@
 import { BsInstagram, BsWhatsapp } from 'react-icons/bs';
 import { FiTwitter, FiFacebook } from 'react-icons/fi';
 
+import LogoGpai from '../assets/logo-white.svg';
+
 const iconsItems = [
   {
     to: '/',
@@ -46,7 +48,7 @@ export function Footer() {
           <a className="link link-hover">Cadastre-se</a>
         </div>
       </div>
-      <div className="footer footer-center py-5">
+      <div className="footer gap-5 footer-center py-5">
         <div>
           <div className="grid grid-flow-col text-xl gap-4">
             {iconsItems.map((item, index) => (
@@ -61,6 +63,13 @@ export function Footer() {
           </div>
         </div>
         <div>
+          <a href="/">
+            <img
+              className="hidden text-red-700 h-12 w-auto lg:block"
+              src={LogoGpai}
+              alt="Logo G.P.A.I"
+            />
+          </a>
           <p>Copyright © 2023 </p>
         </div>
       </div>
