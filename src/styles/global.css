@@ -11,3 +11,15 @@
 .nav-hover {
   @apply relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-1 after:hover:w-full after:bg-primary after:rounded-sm after:transition-all;
 }
+
+.input-root:focus-within label,
+.select-root:focus-within label,
+.textarea-root:focus-within label {
+  @apply text-primary;
+}
+
+.input-root:focus-within label,
+.input-root input:not(:placeholder-shown) ~ label,
+.multiselect-focused {
+  @apply transform scale-75 -translate-y-[23px] -ml-1 z-0 p-1  opacity-100;
+}
