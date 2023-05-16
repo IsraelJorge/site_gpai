@@ -7,7 +7,13 @@ const buttonStyles = cva(['flex', 'flex-row', 'gap-1'], {
   variants: {
     variant: {
       default: ['btn', 'btn-primary', 'text-neutral'],
-      outline: ['btn', 'btn-primary', 'btn-outline', 'text-neutral'],
+      outline: [
+        'btn',
+        'border-2',
+        'border-primary',
+        'bg-neutral',
+        'text-primary',
+      ],
     },
   },
 });

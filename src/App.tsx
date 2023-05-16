@@ -1,13 +1,12 @@
-import { Button } from './components/Button';
+import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 
 export function App() {
   return (
-    <>
+    <div className="h-screen flex flex-col justify-between">
       <Header />
-      <Button.Root as="Link">
-        <Button.Label>fsdffsdfs</Button.Label>
-      </Button.Root>
-    </>
+
+      <Footer />
+    </div>
   );
 }
