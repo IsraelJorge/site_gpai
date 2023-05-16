@@ -48,11 +48,14 @@ export function Header() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-between">
                 <div className="flex flex-shrink-0 items-center gap-7">
-                  <img
-                    className="hidden h-12 w-auto lg:block"
-                    src={LogoGpai}
-                    alt="Your Company"
-                  />
+                  <a href="/">
+                    <img
+                      className="hidden h-12 w-auto lg:block"
+                      src={LogoGpai}
+                      alt="Logo G.P.A.I"
+                    />
+                  </a>
+
                   <span className="text-3xl md:text-5xl font-bold">
                     G.P.A.I
                   </span>
