@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 
 import type { VariantProps } from 'class-variance-authority';
 import { cva } from 'class-variance-authority';
@@ -11,8 +12,10 @@ const buttonStyles = cva(['flex', 'flex-row', 'gap-1'], {
         'btn',
         'border-2',
         'border-primary',
-        'bg-neutral',
+        'bg-base-100',
         'text-primary',
+        'hover:text-neutral',
+        'hover:bg-primary',
       ],
     },
   },
@@ -28,7 +31,7 @@ export interface ButtonProps extends VariantProps<typeof buttonStyles> {
   disabled?: boolean;
 }
 
-const Root = ({
+const ButtonRoot = ({
   variant = 'default',
   as = 'Button',
   to,
@@ -38,12 +41,13 @@ const Root = ({
 }: ButtonProps) => {
   const map = {
     Link: (
-      <a
+      <Link
+        to={to || ''}
         className={`${buttonStyles({ variant })} ${className ?? ''}`}
         {...rest}
       >
         {children}
-      </a>
+      </Link>
     ),
 
     Button: (
@@ -63,7 +67,6 @@ const Label = ({ children }: { children: ReactNode }) => {
   return <span>{children}</span>;
 };
 
-export const Button = {
-  Root,
-  Label,
-};
+export const Button = Object.assign(ButtonRoot, {
+  Label: Label,
+});

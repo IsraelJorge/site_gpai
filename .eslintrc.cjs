@@ -20,7 +20,7 @@ module.exports = {
       'warn',
       {
         newlinesBetween: 'always', // new line between groups
-        groups: ['/^react/', 'module', '/^~/', ['parent', 'sibling', 'index']],
+        groups: ['/^react/', 'module', ['parent', 'sibling', 'index']],
         alphabetize: { order: 'asc', ignoreCase: true },
       },
     ],
