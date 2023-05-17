@@ -1,17 +1,19 @@
 import { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
 import LogoGpai from '../assets/logo-gpai.svg';
+import { Route } from '../utils/Routes';
 import { Button } from './Button';
 
 const navigation = [
-  { name: 'Adote', to: '#' },
-  { name: 'Doar', to: '#' },
-  { name: 'Fazer parte', to: '#' },
-  { name: 'Contato', to: '#' },
-  { name: 'Sobre', to: '#' },
+  { name: 'Adote', to: Route.adopt },
+  { name: 'Doar', to: Route.donate },
+  { name: 'Fazer parte', to: Route.bePart },
+  { name: 'Contato', to: Route.contact },
+  { name: 'Sobre', to: Route.about },
 ];
 
 const ProfileDropdownItems = [
@@ -63,9 +65,9 @@ export function Header() {
                 <div className="hidden sm:ml-6 sm:flex sm:items-center">
                   <div className="flex items-center font-semibold  space-x-4">
                     {navigation.map((item) => (
-                      <a key={item.name} className="nav-hover" href={item.to}>
+                      <Link key={item.name} className="nav-hover" to={item.to}>
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -109,9 +111,13 @@ export function Header() {
                     </Transition>
                   </Menu>
                 ) : (
-                  <Button.Root className="hidden sm:flex h-8" as="Link">
+                  <Button
+                    to={Route.login}
+                    className="hidden sm:flex h-8"
+                    as="Link"
+                  >
                     <Button.Label>Entrar</Button.Label>
-                  </Button.Root>
+                  </Button>
                 )}
               </div>
             </div>
@@ -129,9 +135,9 @@ export function Header() {
                   {item.name}
                 </Disclosure.Button>
               ))}
-              <Button.Root variant="outline" className="h-8" as="Link">
+              <Button variant="outline" className="h-8" as="Link">
                 <Button.Label>Entrar</Button.Label>
-              </Button.Root>
+              </Button>
             </div>
           </Disclosure.Panel>
         </>
