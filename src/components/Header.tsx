@@ -29,7 +29,7 @@ export function Header() {
     <Disclosure as="nav" className="bg-accent text-primary">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-[1312px] px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
@@ -49,7 +49,7 @@ export function Header() {
                 </Disclosure.Button>
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-between">
-                <div className="flex flex-shrink-0 items-center gap-7">
+                <div className="flex flex-shrink-0 items-center sm:gap-7">
                   <a href="/">
                     <img
                       className="hidden h-12 w-auto lg:block"
