@@ -9,6 +9,7 @@ import { Home } from '../pages/Home';
 import { Login } from '../pages/Login';
 import { Route } from '../utils/Routes';
 import { Root } from './Root';
+import { UserRegistration } from '../pages/UserResistration';
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
       {
         path: Route.login,
         element: <Login />,
+      },
+      {
+        path: Route.userRegistration,
+        element: <UserRegistration />,
       },
     ],
   },
