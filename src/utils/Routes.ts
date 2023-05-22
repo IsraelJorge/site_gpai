@@ -6,4 +6,5 @@ export const Route = {
   login: '/login',
   contact: '/contact',
   donate: '/donate',
+  userRegistration: '/user-resistration'
 };
