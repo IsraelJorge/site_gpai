@@ -11,6 +11,7 @@ export function Paws() {
     <div className="py-10 flex items-start flex-wrap text-5xl text-primary">
       {new Array(10).fill('').map((_, index) => (
         <motion.div
+          key={index}
           initial={initialState}
           animate={animate}
           transition={{ delay: index * 0.35, duration: 0.5 }}
