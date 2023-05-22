@@ -1,3 +1,4 @@
+import { Breadcrumb } from '../components/Breadcrumb';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
 
@@ -5,7 +6,10 @@ export function UserRegistration() {
   return (
     <>
       <main className="p-5 text-primary ">
-        <p>Home {'>'} Cadastro</p>
+        <Breadcrumb>
+          <Breadcrumb.Item to="/">Inicio</Breadcrumb.Item>
+          <Breadcrumb.Item to=".">Cadastro</Breadcrumb.Item>
+        </Breadcrumb>
         <h1 className="text-4xl my-3">Formulário de Cadastro</h1>
         <Input name="name" label="Nome:" />
 
