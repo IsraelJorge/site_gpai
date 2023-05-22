@@ -1,6 +1,10 @@
+import HandsImage from '../assets/animal-therapy.svg';
 import DogImage from '../assets/dogImage.png';
+import MenAndDogImage from '../assets/men-and-dog.svg';
+import WomenAndCatImage from '../assets/women-and-cat .svg';
 import { Button } from '../components/Button';
 import { Card } from '../components/Card';
+import { Paws } from '../components/Paws';
 
 export function Home() {
   return (
@@ -15,7 +19,7 @@ export function Home() {
               Grupo de Proteção aos Animais de Imperatriz
             </h2>
           </div>
-
+          <Paws />
           <div className="flex w-full flex-col md:flex-row flex-wrap gap-5 md:gap-7">
             <Button className="flex-1">
               <Button.Label>Quero Adotar</Button.Label>
@@ -26,7 +30,7 @@ export function Home() {
           </div>
         </div>
         <picture className="hidden  md:flex justify-center flex-1">
-          <div className="mask-border-radius w-10/12 ">
+          <div className="mask-border-radius ">
             <img
               src={DogImage}
               alt="Imagem de um Cachorro"
@@ -35,7 +39,6 @@ export function Home() {
           </div>
         </picture>
       </section>
-
       <section className="pt-16">
         <h2 className="text-primary font-bold text-3xl ">
           Novos peludos por aqui
@@ -51,12 +54,71 @@ export function Home() {
           ))}
         </div>
       </section>
-
       <section className="pt-12">
-        <h2 className="text-primary font-bold text-3xl mb-4">
+        <h2 className="text-primary font-bold text-3xl mb-6">
           Por que adotar?
         </h2>
+
+        <div className="flex items-center justify-between flex-wrap gap-4">
+          <div className="w-96 flex items-center justify-center py-5 pr-6 rounded-2xl bg-neutral border-[3px] border-primary">
+            <div className=" h-32 flex items-center flex-1">
+              <figure className="px-5">
+                <img src={HandsImage} alt="Figura" />
+              </figure>
+              <div className="w-44 flex-1">
+                <p className="text-justify">
+                  <span className="text-primary font-medium ">
+                    Nesse exato momento,
+                  </span>
+                  <br />
+                  existem milhares de doguinhos e gatinhos esperando um humano
+                  para chamar de seu.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="w-96 flex items-center justify-center py-5 pr-6 rounded-2xl bg-neutral border-[3px] border-primary">
+            <div className=" h-32 flex items-center flex-1">
+              <figure className="px-5">
+                <img src={WomenAndCatImage} alt="Figura" />
+              </figure>
+              <div className="w-44 flex-1">
+                <p className="text-justify">
+                  <span className="text-primary font-medium ">
+                    E não há recompensa maior
+                  </span>
+                  <br /> do que vê-los se tornando aquela coisinha alegre e
+                  saudável depois de uma boa dose de cuidado e carinho.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="w-96 flex items-center justify-center py-5 pr-6 rounded-2xl bg-neutral border-[3px] border-primary">
+            <div className=" h-32 flex items-center flex-1">
+              <figure className="px-5">
+                <img src={MenAndDogImage} alt="Figura" />
+              </figure>
+              <div className="w-44 flex-1">
+                <p className="text-justify">
+                  <span className="text-primary font-medium ">
+                    Pensando bem, a pergunta é outra:
+                  </span>
+                  <br />
+                  se você pode mudar o destino de um animal de rua, por que não
+                  faria isso?
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
+      <div className="w-full flex items-center justify-center mt-16 mb-28">
+        <Button className="w-96">
+          <Button.Label>Encontrar meu novo amigo</Button.Label>
+        </Button>
+      </div>
     </div>
   );
 }
