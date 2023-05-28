@@ -22,6 +22,7 @@ const buttonStyles = cva(['flex', 'flex-row', 'gap-1'], {
 });
 
 export type ButtonAs = 'Link' | 'Button';
+
 export interface ButtonProps extends VariantProps<typeof buttonStyles> {
   as?: ButtonAs;
   children: React.ReactNode;
@@ -29,6 +30,10 @@ export interface ButtonProps extends VariantProps<typeof buttonStyles> {
   to?: string;
   className?: string;
   disabled?: boolean;
+  buttonProps?: React.DetailedHTMLProps<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  >;
 }
 
 const ButtonRoot = ({
@@ -37,6 +42,7 @@ const ButtonRoot = ({
   to,
   children,
   className,
+  buttonProps,
   ...rest
 }: ButtonProps) => {
   const map = {
@@ -54,6 +60,7 @@ const ButtonRoot = ({
       <button
         className={`${buttonStyles({ variant })} ${className ?? ''}`}
         {...rest}
+        {...buttonProps}
       >
         {children}
       </button>
