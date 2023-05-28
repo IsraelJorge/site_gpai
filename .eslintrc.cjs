@@ -12,6 +12,7 @@ module.exports = {
     'react-refresh',
     '@typescript-eslint',
     'eslint-plugin-import-helpers',
+    '@tanstack/query',
   ],
 
   rules: {
