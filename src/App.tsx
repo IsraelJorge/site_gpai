@@ -1,11 +1,20 @@
 import { RouterProvider } from 'react-router-dom';
 
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { router } from './routes';
+
+const queryClient = new QueryClient();
 
 export function App() {
   return (
     <div className="w-full h-full">
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+        <ToastContainer />
+        <RouterProvider router={router} />
+      </QueryClientProvider>
     </div>
   );
 }

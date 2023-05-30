@@ -1,10 +1,33 @@
+
 import Pets from '../assets/pets.png';
 import { Breadcrumb } from '../components/Breadcrumb';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
 import { Route } from '../utils/Routes';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { useAuth } from '../context/AuthProvider/useAuth';
+
+const LoginSchema = z.object({
+  email: z.string().email().nonempty(),
+  password: z.string().min(6).nonempty(),
+});
+
+type Login = z.infer<typeof LoginSchema>;
+
 
 export function Login() {
+  const { register, handleSubmit } = useForm<Login>({
+    resolver: zodResolver(LoginSchema),
+  });
+
+  const { authenticate } = useAuth();
+
+  const handleLoginRequest = ({ email, password }: Login) => {
+    authenticate({ email, password });
+  };
+
   return (
     <>
       <Breadcrumb>
@@ -23,21 +46,12 @@ export function Login() {
               </h2>
             </div>
 
-            <form action="" className="">
+            <form onSubmit={handleSubmit(handleLoginRequest)}>
               <div className="px-8 mx-4 mb-2">
-                <Input
-                  label="email"
-                  name="emailInput"
-                  type="email"
-                  className="font-semibold pb-1"
-                />
+                  <Input label="Email" {...register('email')} />
               </div>
               <div className="px-8 mx-4 mb-2">
-                <Input
-                  label="Senha"
-                  name="senhaInput"
-                  className="font-semibold pb-1"
-                />
+               <Input label="Senha" {...register('password')} />
               </div>
               <div className="px-8 mx-4 mb-2">
                 <a
@@ -56,11 +70,9 @@ export function Login() {
             </form>
           </div>
 
-          <Button
-            children="Entrar"
-            className="w-full mt-5 py-3 mb-6 bg-footer"
-            to=""
-          />
+        <Button className="w-full">
+          <Button.Label>Entrar</Button.Label>
+        </Button>
         </div>
       </div>
     </>
