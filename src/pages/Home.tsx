@@ -1,5 +1,6 @@
 import HandsImage from '../assets/animal-therapy.svg';
 import DogImage from '../assets/dogImage.png';
+import ImageCat from '../assets/gato-.jpg';
 import MenAndDogImage from '../assets/men-and-dog.svg';
 import WomenAndCatImage from '../assets/women-and-cat .svg';
 import { Button } from '../components/Button';
@@ -50,7 +51,12 @@ export function Home() {
 
         <div className="flex flex-wrap justify-between gap-5 pt-12">
           {new Array(8).fill('').map((_, index) => (
-            <Card key={index} />
+            <Card
+              image={ImageCat}
+              label="Federico"
+              description="If a dog chews shoes whose shoes does he choose?"
+              key={index}
+            />
           ))}
         </div>
       </section>

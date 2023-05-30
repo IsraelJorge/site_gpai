@@ -47,7 +47,7 @@ export const InputRoot = forwardRef<HTMLInputElement, InputProps>(
       <div className={clsx(className, { 'pb-6': !noMargin })}>
         <div className="input-root flex items-center justify-between h-12 bg-gray-100 relative border-2  rounded-lg ">
           <input
-            className="block py-2 px-3 flex-1 appearance-none focus:outline-none bg-transparent"
+            className="block py-2 px-3 w-full appearance-none focus:outline-none bg-transparent"
             type="text"
             placeholder=" "
             name={name}
