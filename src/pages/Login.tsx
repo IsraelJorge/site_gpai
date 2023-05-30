@@ -1,4 +1,3 @@
-
 import Pets from '../assets/pets.png';
 import { Breadcrumb } from '../components/Breadcrumb';
 import { Button } from '../components/Button';
@@ -16,7 +15,6 @@ const LoginSchema = z.object({
 
 type Login = z.infer<typeof LoginSchema>;
 
-
 export function Login() {
   const { register, handleSubmit } = useForm<Login>({
     resolver: zodResolver(LoginSchema),
@@ -25,6 +23,7 @@ export function Login() {
   const { authenticate } = useAuth();
 
   const handleLoginRequest = ({ email, password }: Login) => {
+    console.log('sdasd');
     authenticate({ email, password });
   };
 
@@ -38,7 +37,7 @@ export function Login() {
         <div className="w-1/2 sm: flex-1">
           <img src={Pets} alt="pet" />
         </div>
-        <div className="w-full  px-10 sm: flex-1 ">
+        <div className="w-full px-10 sm: flex-1 ">
           <div className="bg-white h-[500px] flex flex-col gap-10 shadow-lg rounded-md shadow-gray-200 p-5">
             <div className="flex justify-center ">
               <h2 className="font-bold text-2xl mb-2 cor-titulo">
@@ -46,12 +45,12 @@ export function Login() {
               </h2>
             </div>
 
-            <form onSubmit={handleSubmit(handleLoginRequest)}>
+            <form onSubmit={handleSubmit(handleLoginRequest)} id="form-login">
               <div className="px-8 mx-4 mb-2">
-                  <Input label="Email" {...register('email')} />
+                <Input label="Email" {...register('email')} />
               </div>
               <div className="px-8 mx-4 mb-2">
-               <Input label="Senha" {...register('password')} />
+                <Input label="Senha" {...register('password')} />
               </div>
               <div className="px-8 mx-4 mb-2">
                 <a
@@ -69,10 +68,9 @@ export function Login() {
               </div>
             </form>
           </div>
-
-        <Button className="w-full">
-          <Button.Label>Entrar</Button.Label>
-        </Button>
+          <Button className="w-full mt-5" buttonProps={{ form: 'form-login' }}>
+            <Button.Label>Entrar</Button.Label>
+          </Button>
         </div>
       </div>
     </>

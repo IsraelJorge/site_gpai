@@ -12,6 +12,7 @@ import {
 import { loginRequest } from '../../services/datasources/loginRequest';
 import { Route } from '../../utils/Routes';
 import { getUserLocalStorage, setUserLocalStorage } from './utils';
+import axios, { AxiosError } from 'axios';
 
 export const AuthContext = createContext<IContextAuth>({} as IContextAuth);
 
@@ -23,6 +24,7 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
   const { mutate: authenticate } = useMutation({
     mutationFn: ({ email, password }: IloginRequest) =>
       loginRequest(email, password),
+
     onSuccess: (data) => {
       setUser(data);
       setUserLocalStorage(data);
@@ -30,7 +32,16 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
       toast.success('Logado com sucesso!');
       navigate(Route.home);
     },
-    onError: (error) => console.log(error),
+
+    onError: (error: Error | AxiosError) => {
+      if (axios.isAxiosError(error)) {
+        if (error.code === 'ERR_NETWORK') toast.error('Erro de conexão!!');
+      } else {
+        toast.error(
+          'Houve algum erro com servidor, tente novamente mais tarde.',
+        );
+      }
+    },
   });
 
   function logout() {
@@ -47,7 +58,9 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ ...user, authenticate, logout }}>
+    <AuthContext.Provider
+      value={{ ...user, authenticate, logout, isLogged: !!user }}
+    >
       {children}
     </AuthContext.Provider>
   );

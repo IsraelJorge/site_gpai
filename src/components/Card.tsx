@@ -16,11 +16,16 @@ export function Card({
   return (
     <div
       className={clsx('card rounded-xl overflow-hidden bg-base-100 shadow-xl', {
-        'w-64': variant === 'default',
+        'w-64 h-72': variant === 'default',
         'w-36 h-40': variant === 'donate',
       })}
     >
-      <figure className="h-20">
+      <figure
+        className={clsx({
+          'h-28': variant === 'donate',
+          'h-20': variant === 'donate',
+        })}
+      >
         <img
           src={image}
           alt="Foto do Pet"
