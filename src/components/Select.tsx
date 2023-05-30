@@ -2,7 +2,6 @@ import {
   SelectHTMLAttributes,
   ChangeEvent,
   ReactNode,
-  ReactElement,
   forwardRef,
   Ref,
 } from 'react';
@@ -22,15 +21,6 @@ export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   disabledPredicate?: (value: any) => boolean;
   skipPredicate?: (value: any) => boolean;
 }
-
-const checkIfHasError = (children?: ReactNode) => {
-  if (!children) return false;
-
-  if (Array.isArray(children))
-    return children.some((child: ReactElement) => child.props.message);
-
-  return Boolean((children as ReactElement).props?.message);
-};
 
 const SelectRoot = forwardRef(
   (
