@@ -1,18 +1,46 @@
-import ImageCat from '../assets/gato-.jpg';
+import clsx from 'clsx';
 
-export function Card() {
+type CardProps = {
+  image: string;
+  label: string;
+  description?: string;
+  variant?: 'default' | 'donate';
+};
+
+export function Card({
+  image,
+  label,
+  description,
+  variant = 'default',
+}: CardProps) {
   return (
-    <div className="card w-64 my-5 rounded-xl overflow-hidden bg-base-100 shadow-xl">
-      <figure>
+    <div
+      className={clsx('card rounded-xl overflow-hidden bg-base-100 shadow-xl', {
+        'w-64': variant === 'default',
+        'w-36 h-40': variant === 'donate',
+      })}
+    >
+      <figure className="h-20">
         <img
-          src={ImageCat}
-          alt="Gato"
-          className="hover:scale-125 transition-all"
+          src={image}
+          alt="Foto do Pet"
+          className="hover:scale-125 transition-all w-full h-full object-cover"
         />
       </figure>
-      <div className="card-body text-base-100 bg-secondary px-5 pt-5 pb-8">
-        <h2 className="card-title cursor-pointer">Federico</h2>
-        <p>If a dog chews shoes whose shoes does he choose?</p>
+      <div
+        className={clsx('card-body text-base-100 bg-secondary ', {
+          'px-5 pt-5 pb-8': variant === 'default',
+          'px-3 pt-3 pb-0': variant === 'donate',
+        })}
+      >
+        <h2
+          className={clsx('card-title cursor-pointer', {
+            'text-center justify-center text-base': variant === 'donate',
+          })}
+        >
+          {label}
+        </h2>
+        {variant === 'default' && <p>{description}</p>}
       </div>
     </div>
   );
