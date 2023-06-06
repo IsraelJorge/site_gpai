@@ -7,23 +7,30 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useAuth } from '../context/AuthProvider/useAuth';
+import { Link } from 'react-router-dom';
 
 const LoginSchema = z.object({
-  email: z.string().email().nonempty(),
-  password: z.string().min(6).nonempty(),
+  email: z.string().email('Email inválido.').nonempty(),
+  password: z
+    .string()
+    .min(6, 'Senha deve ter no minimo 6 caracteres.')
+    .nonempty(),
 });
 
 type Login = z.infer<typeof LoginSchema>;
 
 export function Login() {
-  const { register, handleSubmit } = useForm<Login>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Login>({
     resolver: zodResolver(LoginSchema),
   });
 
   const { authenticate } = useAuth();
 
   const handleLoginRequest = ({ email, password }: Login) => {
-    console.log('sdasd');
     authenticate({ email, password });
   };
 
@@ -47,10 +54,14 @@ export function Login() {
 
             <form onSubmit={handleSubmit(handleLoginRequest)} id="form-login">
               <div className="px-8 mx-4 mb-2">
-                <Input label="Email" {...register('email')} />
+                <Input label="Email" {...register('email')}>
+                  <Input.Error message={errors.email?.message} />
+                </Input>
               </div>
               <div className="px-8 mx-4 mb-2">
-                <Input label="Senha" {...register('password')} />
+                <Input label="Senha" type="password" {...register('password')}>
+                  <Input.Error message={errors.password?.message} />
+                </Input>
               </div>
               <div className="px-8 mx-4 mb-2">
                 <a
@@ -59,12 +70,12 @@ export function Login() {
                 >
                   esqueci minha senha
                 </a>
-                <a
-                  href=""
+                <Link
+                  to={Route.userRegistration}
                   className="block font-semibold cor-titulo underline underline-offset-2 pb-2"
                 >
                   cadastrar-se
-                </a>
+                </Link>
               </div>
             </form>
           </div>

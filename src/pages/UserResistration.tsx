@@ -1,10 +1,11 @@
 import { Breadcrumb } from '../components/Breadcrumb';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
+import { Main } from '../components/layouts/Main';
 
 export function UserRegistration() {
   return (
-    <>
+    <Main>
       <main className="p-5 text-primary ">
         <Breadcrumb>
           <Breadcrumb.Item to="/">Inicio</Breadcrumb.Item>
@@ -115,6 +116,6 @@ export function UserRegistration() {
           <Button children="Cadastrar" />
         </div>
       </main>
-    </>
+    </Main>
   );
 }

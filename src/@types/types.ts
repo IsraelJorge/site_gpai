@@ -26,3 +26,7 @@ export interface IloginRequest {
   email: string;
   password: string;
 }
+
+export type ReponseDataError = {
+  message: string;
+};
