@@ -6,6 +6,7 @@ import WomenAndCatImage from '../assets/women-and-cat .svg';
 import { Button } from '../components/Button';
 import { Card } from '../components/Card';
 import { Paws } from '../components/Paws';
+import { Route } from '../utils/Routes';
 
 export function Home() {
   return (
@@ -22,7 +23,7 @@ export function Home() {
           </div>
           <Paws />
           <div className="flex w-full flex-col md:flex-row flex-wrap gap-5 md:gap-7">
-            <Button className="flex-1">
+            <Button as="Link" to={Route.adopt} className="flex-1">
               <Button.Label>Quero Adotar</Button.Label>
             </Button>
             <Button variant="outline" className="flex-1 ">
@@ -121,7 +122,7 @@ export function Home() {
         </div>
       </section>
       <div className="w-full flex items-center justify-center mt-16 mb-28">
-        <Button className="w-96">
+        <Button as="Link" to={Route.adopt} className="w-96">
           <Button.Label>Encontrar meu novo amigo</Button.Label>
         </Button>
       </div>
