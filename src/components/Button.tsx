@@ -17,6 +17,15 @@ const buttonStyles = cva(['flex', 'flex-row', 'gap-1'], {
         'hover:text-neutral',
         'hover:bg-primary',
       ],
+      drawer:[
+        'btn', 
+        'btn-primary',
+        'text-white',
+        'bg-secondarySiderbar',
+        'justify-start',
+        'border-none',
+        'shadow-md'
+      ],
     },
   },
 });

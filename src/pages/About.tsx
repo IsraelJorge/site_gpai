@@ -1,9 +1,12 @@
 import { DrawerRoot } from '../components/Drawer';
+import { DrawerIten } from '../components/DrawerIten';
 
 export function About() {
   return (
     <>
-      <DrawerRoot />
+      <DrawerRoot>
+        <DrawerIten image="" conteudo="" />
+      </DrawerRoot>
     </>
   );
 }
