@@ -7,6 +7,7 @@ import { Button } from '../components/Button';
 import { Card } from '../components/Card';
 import { Input } from '../components/Input';
 import { Select } from '../components/Select';
+import { Main } from '../components/layouts/Main';
 import { Route } from '../utils/Routes';
 
 const typesDonate = [
@@ -18,7 +19,7 @@ const typesDonate = [
 
 export function Donate() {
   return (
-    <>
+    <Main>
       <Breadcrumb>
         <Breadcrumb.Item to={Route.home}>Inicio</Breadcrumb.Item>
         <Breadcrumb.Item to=".">Doação</Breadcrumb.Item>
@@ -80,6 +81,6 @@ export function Donate() {
           </div>
         </section>
       </main>
-    </>
+    </Main>
   );
 }

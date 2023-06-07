@@ -7,10 +7,12 @@ import { Button } from '../components/Button';
 import { Card } from '../components/Card';
 import { Paws } from '../components/Paws';
 import { Route } from '../utils/Routes';
+import { Main } from '../components/layouts/Main';
+
 
 export function Home() {
   return (
-    <div className="w-full h-full ">
+    <Main>
       <section className="flex flex-col md:flex-row justify-between gap-7 ">
         <div className="flex flex-col items-center md:items-start justify-between flex-1">
           <div>
@@ -126,6 +128,6 @@ export function Home() {
           <Button.Label>Encontrar meu novo amigo</Button.Label>
         </Button>
       </div>
-    </div>
+    </Main>
   );
 }

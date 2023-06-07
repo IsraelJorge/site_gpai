@@ -8,11 +8,13 @@ import {
   IContextAuth,
   IUser,
   IloginRequest,
+  ReponseDataError,
 } from '../../@types/types';
 import { loginRequest } from '../../services/datasources/loginRequest';
 import { Route } from '../../utils/Routes';
 import { getUserLocalStorage, setUserLocalStorage } from './utils';
-import axios, { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
+import { handleErrorRequest } from '../../utils/errorsRequest';
 
 export const AuthContext = createContext<IContextAuth>({} as IContextAuth);
 
@@ -33,20 +35,16 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
       navigate(Route.home);
     },
 
-    onError: (error: Error | AxiosError) => {
-      if (axios.isAxiosError(error)) {
-        if (error.code === 'ERR_NETWORK') toast.error('Erro de conexão!!');
-      } else {
-        toast.error(
-          'Houve algum erro com servidor, tente novamente mais tarde.',
-        );
-      }
+    onError: (error: AxiosError<ReponseDataError>) => {
+      handleErrorRequest(error);
     },
   });
 
   function logout() {
     setUser(null);
     setUserLocalStorage(null);
+
+    toast.success('Deslogado com sucesso!');
   }
 
   useEffect(() => {

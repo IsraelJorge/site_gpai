@@ -20,7 +20,7 @@ export function Root() {
     <AuthProvider>
       <div className="w-full h-full">
         <Header />
-        <div className="w-full max-w-7xl mx-auto pt-16 px-4">
+        <div className="w-full h-full">
           <Outlet />
         </div>
         <Footer />
