@@ -1,4 +1,3 @@
-
 import { Breadcrumb } from '../components/Breadcrumb';
 import { Button } from '../components/Button';
 import { Select } from '../components/Select';
@@ -9,6 +8,7 @@ import ImageLittle from '../assets/LittleCats.png';
 import ImageFederico from '../assets/Federico.png';
 import ImageRodolfo from '../assets/Rodolfo.png';
 import { Card } from '../components/Card';
+import { Main } from '../components/layouts/Main';
 
 const typeAdopt = [
   { label: 'Todas as Especies', value: 'todasAsEspecies' },
@@ -31,7 +31,7 @@ const typeStature = [
 
 export function Adopt() {
   return (
-    <>
+    <Main>
       <main>
         <Breadcrumb>
           <Breadcrumb.Item to="/">Inicio</Breadcrumb.Item>
@@ -100,6 +100,6 @@ export function Adopt() {
           <Button children="7" variant={'outline'} />
         </section>
       </main>
-    </>
+    </Main>
   );
 }

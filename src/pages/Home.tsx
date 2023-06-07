@@ -9,7 +9,6 @@ import { Paws } from '../components/Paws';
 import { Route } from '../utils/Routes';
 import { Main } from '../components/layouts/Main';
 
-
 export function Home() {
   return (
     <Main>
