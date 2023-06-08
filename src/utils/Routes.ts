@@ -6,5 +6,10 @@ export const Route = {
   login: '/login',
   contact: '/contact',
   donate: '/donate',
-  userRegistration: '/user-resistration'
+  userRegistration: '/user-resistration',
+  profile: '/profile',
+  myPets: 'my-pets',
+  donations: 'donations',
+  adopters: 'adopters',
+  animals: 'animals',
 };

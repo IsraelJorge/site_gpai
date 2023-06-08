@@ -34,3 +34,9 @@
   filter: drop-shadow(0px 3.7669px 3.7669px rgba(0, 0, 0, 0.25));
   border-radius: 369.098px 8620.04px 726.003px 5620.04px;
 }
+
+/* Nav Link Drawer */
+
+.nav-link.active {
+  @apply text-primary bg-accent;
+}

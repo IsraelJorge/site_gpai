@@ -8,6 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useAuth } from '../context/AuthProvider/useAuth';
 import { Link } from 'react-router-dom';
+import { Main } from '../components/layouts/Main';
 
 const LoginSchema = z.object({
   email: z.string().email('Email inválido.').nonempty(),
@@ -35,7 +36,7 @@ export function Login() {
   };
 
   return (
-    <>
+    <Main>
       <Breadcrumb>
         <Breadcrumb.Item to={Route.home}>Inicio</Breadcrumb.Item>
         <Breadcrumb.Item to=".">Login</Breadcrumb.Item>
@@ -84,6 +85,6 @@ export function Login() {
           </Button>
         </div>
       </div>
-    </>
+    </Main>
   );
 }

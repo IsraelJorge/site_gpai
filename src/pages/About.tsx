@@ -1,9 +1,7 @@
-import { DrawerRoot } from '../components/Drawer';
-
 export function About() {
   return (
     <>
-      <DrawerRoot />
+      <h1>Sobre</h1>
     </>
   );
 }

@@ -12,6 +12,7 @@ export default {
       colors: {
         'black-100': '#544C4C',
         'gray-100': '#F5F5F5',
+        'secondarySiderbar': '#8BBDAE',
       },
     },
   },
