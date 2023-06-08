@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import type { VariantProps } from 'class-variance-authority';
 import { cva } from 'class-variance-authority';
@@ -17,20 +17,21 @@ const buttonStyles = cva(['flex', 'flex-row', 'gap-1'], {
         'hover:text-neutral',
         'hover:bg-primary',
       ],
-      drawer:[
-        'btn', 
+      drawer: [
+        'btn',
+        'gap-2',
         'btn-primary',
         'text-white',
         'bg-secondarySiderbar',
         'justify-start',
         'border-none',
-        'shadow-md'
+        'shadow-md',
       ],
     },
   },
 });
 
-export type ButtonAs = 'Link' | 'Button';
+export type ButtonAs = 'Link' | 'Button' | 'NavLink';
 
 export interface ButtonProps extends VariantProps<typeof buttonStyles> {
   as?: ButtonAs;
@@ -64,7 +65,16 @@ const ButtonRoot = ({
         {children}
       </Link>
     ),
-
+    NavLink: (
+      <NavLink
+        to={to || ''}
+        end
+        className={`nav-link ${buttonStyles({ variant })} ${className ?? ''}`}
+        {...rest}
+      >
+        {children}
+      </NavLink>
+    ),
     Button: (
       <button
         className={`${buttonStyles({ variant })} ${className ?? ''}`}
