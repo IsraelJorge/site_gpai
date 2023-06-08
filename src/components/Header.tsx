@@ -19,7 +19,7 @@ const navigation = [
   { name: 'Sobre', to: Route.about },
 ];
 
-const ProfileDropdownItems = [{ to: '#', label: 'Seu Perfil' }];
+const ProfileDropdownItems = [{ to: Route.profile, label: 'Seu Perfil' }];
 
 export function Header() {
   const { isLogged, logout } = useAuth();

@@ -10,6 +10,12 @@ import { Login } from '../pages/Login';
 import { Route } from '../utils/Routes';
 import { Root } from './Root';
 import { UserRegistration } from '../pages/UserResistration';
+import { RootProfile } from '../pages/profile/RootProfile';
+import { Profile } from '../pages/profile/Profile';
+import { MyPets } from '../pages/profile/MyPets';
+import { Donations } from '../pages/profile/Donations';
+import { Adopters } from '../pages/profile/Adopters';
+import { Animals } from '../pages/profile/Animals';
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +53,32 @@ export const router = createBrowserRouter([
       {
         path: Route.userRegistration,
         element: <UserRegistration />,
+      },
+      {
+        path: Route.profile,
+        element: <RootProfile />,
+        children: [
+          {
+            path: '',
+            element: <Profile />,
+          },
+          {
+            path: Route.myPets,
+            element: <MyPets />,
+          },
+          {
+            path: Route.donations,
+            element: <Donations />,
+          },
+          {
+            path: Route.adopters,
+            element: <Adopters />,
+          },
+          {
+            path: Route.animals,
+            element: <Animals />,
+          },
+        ],
       },
     ],
   },
