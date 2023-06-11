@@ -18,6 +18,15 @@
   @apply text-primary;
 }
 
+.input-root.error:focus-within label,
+.select-root.error:focus-within label,
+.textarea-root.error:focus-within label,
+.input-root.error label,
+.select-root.error label,
+.textarea-root.error label {
+  @apply text-error;
+}
+
 .input-root:focus-within label,
 .input-root input:not(:placeholder-shown) ~ label,
 .multiselect-focused {
@@ -27,6 +36,11 @@
 .select-root select:focus ~ label,
 .select-root select:has(option:checked:not(:disabled)) ~ label {
   @apply transform scale-75 -translate-y-[23px] -ml-1 z-0 p-1  opacity-100;
+}
+
+.textarea-root:focus-within label,
+.textarea-root textarea:not(:placeholder-shown) ~ label {
+  @apply transform scale-75 -translate-y-[20px] -ml-1 z-0 p-1  opacity-100;
 }
 
 .mask-border-radius {
