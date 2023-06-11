@@ -16,6 +16,7 @@ import { MyPets } from '../pages/profile/MyPets';
 import { Donations } from '../pages/profile/Donations';
 import { Adopters } from '../pages/profile/Adopters';
 import { Animals } from '../pages/profile/Animals';
+import { AnimalResistration } from '../pages/AnimalResistration';
 
 export const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ export const router = createBrowserRouter([
       {
         path: Route.userRegistration,
         element: <UserRegistration />,
+      },
+      {
+        path: Route.animalRegistration,
+        element: <AnimalResistration />,
       },
       {
         path: Route.profile,

@@ -27,7 +27,12 @@ export function Home() {
             <Button as="Link" to={Route.adopt} className="flex-1">
               <Button.Label>Quero Adotar</Button.Label>
             </Button>
-            <Button variant="outline" className="flex-1 ">
+            <Button
+              as="Link"
+              to={Route.animalRegistration}
+              variant="outline"
+              className="flex-1 "
+            >
               <Button.Label>Quero divulgar um animal</Button.Label>
             </Button>
           </div>
