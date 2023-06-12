@@ -7,7 +7,7 @@ import { InputFile } from '../components/InputFile';
 import { Select } from '../components/Select';
 import { Main } from '../components/layouts/Main';
 import {
-  Animal,
+  AnimalForm,
   AnimalSchema,
 } from '../services/datasources/schemas/AnimalSchema';
 import { generateLinkPreview } from '../utils/generateLinkPreview';
@@ -15,6 +15,8 @@ import { Gallery } from '../components/Gallery';
 import { TextArea } from '../components/TextArea';
 import { InputRadio } from '../components/InputRadio';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useAnimalCreate } from '../services/datasources/hooks/useAnimalCreate';
+import { useAuth } from '../context/AuthProvider/useAuth';
 
 const optionsSex = [
   { label: 'Macho', value: 'Macho' },
@@ -33,13 +35,15 @@ const optionsSize = [
 ];
 
 export function AnimalResistration() {
+  const { id } = useAuth();
+
   const {
     register,
     control,
     watch,
     formState: { errors },
     handleSubmit,
-  } = useForm<Animal>({
+  } = useForm<AnimalForm>({
     resolver: zodResolver(AnimalSchema),
   });
 
@@ -47,9 +51,11 @@ export function AnimalResistration() {
 
   const linksImages = photoFiles?.map((file) => generateLinkPreview(file));
 
-  console.log(errors);
+  const { mutate } = useAnimalCreate();
 
-  const handleSubmitData = (data: Animal) => {};
+  const handleSubmitData = (data: AnimalForm) => {
+    mutate(data);
+  };
 
   return (
     <Main>
@@ -61,7 +67,12 @@ export function AnimalResistration() {
         <h1 className="text-4xl font-bold my-3">Cadastro do Pet</h1>
 
         <form onSubmit={handleSubmit(handleSubmitData)} className="mt-10">
-          <input type="hidden" {...register('userId')} />
+          <input
+            type="hidden"
+            {...register('userId', {
+              value: id,
+            })}
+          />
           <Input label="Nome do Pet" {...register('name')}>
             <Input.Error message={errors.name?.message} />
           </Input>
