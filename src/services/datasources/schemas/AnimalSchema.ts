@@ -1,17 +1,14 @@
 import { any, z } from 'zod';
-
-const message = 'Campo obrigatório';
-
-const messageSize = (size: number) => `No mínimo ${size} caracteres`;
+import { Message } from './messages/messagesSchema';
 
 export const AnimalSchema = z.object({
-  name: z.string().min(6, messageSize(6)).nonempty(message),
-  specie: z.string().nonempty(message),
-  race: z.string().nonempty(message),
-  stature: z.string().nonempty(message),
-  sex: z.string().nonempty(message),
-  dateBirth: z.string().min(10, messageSize(10)).nonempty(message),
-  description: z.string().nonempty(message),
+  name: z.string().min(6, Message.min(6)).nonempty(Message.required),
+  specie: z.string().nonempty(Message.required),
+  race: z.string().nonempty(Message.required),
+  stature: z.string().nonempty(Message.required),
+  sex: z.string().nonempty(Message.required),
+  dateBirth: z.string().min(10, Message.min(10)).nonempty(Message.required),
+  description: z.string().nonempty(Message.required),
   disability: z
     .string()
     .transform((value) => value === '1' || value === 'true')
@@ -36,4 +33,4 @@ export const AnimalSchema = z.object({
     .refine((value) => value.length >= 1, 'Adicione ao menos uma foto'),
 });
 
-export type Animal = z.infer<typeof AnimalSchema>;
+export type AnimalForm = z.infer<typeof AnimalSchema>;
