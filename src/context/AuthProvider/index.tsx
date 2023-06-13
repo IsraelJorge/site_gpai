@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useCallback, useEffect, useState } from 'react';
 import { useMutation } from 'react-query';
 
 import { useNavigate } from 'react-router-dom';
@@ -40,6 +40,15 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
     },
   });
 
+  const isLogged = useCallback(() => {
+    try {
+      getUserLocalStorage();
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }, []);
+
   function logout() {
     setUser(null);
     setUserLocalStorage(null);
@@ -56,9 +65,7 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
   }, []);
 
   return (
-    <AuthContext.Provider
-      value={{ ...user, authenticate, logout, isLogged: !!user }}
-    >
+    <AuthContext.Provider value={{ ...user, authenticate, logout, isLogged }}>
       {children}
     </AuthContext.Provider>
   );

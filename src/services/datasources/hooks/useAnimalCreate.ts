@@ -42,7 +42,7 @@ export const useAnimalCreate = () => {
       });
     },
     onSuccess() {
-      toast.success('Animal cadastrado com sucesso.');
+      toast.success('Pet cadastrado com sucesso.');
       navigate(Route.home);
     },
     onError(error) {

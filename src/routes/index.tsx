@@ -17,6 +17,7 @@ import { Donations } from '../pages/profile/Donations';
 import { Adopters } from '../pages/profile/Adopters';
 import { Animals } from '../pages/profile/Animals';
 import { AnimalResistration } from '../pages/AnimalResistration';
+import { PrivateRouter } from './PrivateRouter';
 
 export const router = createBrowserRouter([
   {
@@ -65,23 +66,43 @@ export const router = createBrowserRouter([
         children: [
           {
             path: '',
-            element: <Profile />,
+            element: (
+              <PrivateRouter rolesAcess={['authenticated', 'admin']}>
+                <Profile />
+              </PrivateRouter>
+            ),
           },
           {
             path: Route.myPets,
-            element: <MyPets />,
+            element: (
+              <PrivateRouter rolesAcess={['authenticated', 'admin']}>
+                <MyPets />
+              </PrivateRouter>
+            ),
           },
           {
             path: Route.donations,
-            element: <Donations />,
+            element: (
+              <PrivateRouter rolesAcess={['admin']}>
+                <Donations />
+              </PrivateRouter>
+            ),
           },
           {
             path: Route.adopters,
-            element: <Adopters />,
+            element: (
+              <PrivateRouter rolesAcess={['admin']}>
+                <Adopters />
+              </PrivateRouter>
+            ),
           },
           {
             path: Route.animals,
-            element: <Animals />,
+            element: (
+              <PrivateRouter rolesAcess={['admin']}>
+                <Animals />
+              </PrivateRouter>
+            ),
           },
         ],
       },

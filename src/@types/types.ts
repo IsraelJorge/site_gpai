@@ -1,6 +1,12 @@
 import { ReactNode } from 'react';
 import { UseMutateFunction } from 'react-query';
 
+export interface ChildrenProps {
+  children?: React.ReactNode;
+}
+
+export type WithChildrenProps<T> = ChildrenProps & T;
+
 export interface IUser {
   id?: number;
   name?: string;
@@ -15,7 +21,7 @@ export interface IUser {
 export interface IContextAuth extends IUser {
   authenticate: UseMutateFunction<any, unknown, IloginRequest, unknown>;
   logout: () => void;
-  isLogged: Boolean;
+  isLogged: () => Boolean;
 }
 
 export interface IAuthProvider {
@@ -30,3 +36,5 @@ export interface IloginRequest {
 export type ReponseDataError = {
   message: string;
 };
+
+export type Roles = 'authenticated' | 'admin';

@@ -8,8 +8,37 @@ import { Card } from '../components/Card';
 import { Paws } from '../components/Paws';
 import { Route } from '../utils/Routes';
 import { Main } from '../components/layouts/Main';
+import { useAuth } from '../context/AuthProvider/useAuth';
+import { useNavigate } from 'react-router-dom';
+import { useDialog } from '../context/DialogProvider';
 
 export function Home() {
+  const { isLogged } = useAuth();
+  const navigate = useNavigate();
+  const { showDialog, closeDialog } = useDialog();
+
+  const handleAnimalRegistration = () => {
+    if (isLogged()) return navigate(Route.animalRegistration);
+
+    showDialog({
+      title: 'Login necessário',
+      message: 'Faça login para poder divulgar pets para adoção.',
+      buttons: [
+        {
+          label: 'Cancelar',
+          type: 'outline',
+          onClick: () => closeDialog(),
+        },
+        {
+          label: 'Ir para login',
+          icon: 'MdLogin',
+          type: 'default',
+          onClick: () => navigate(Route.login),
+        },
+      ],
+    });
+  };
+
   return (
     <Main>
       <section className="flex flex-col md:flex-row justify-between gap-7 ">
@@ -28,10 +57,9 @@ export function Home() {
               <Button.Label>Quero Adotar</Button.Label>
             </Button>
             <Button
-              as="Link"
-              to={Route.animalRegistration}
               variant="outline"
-              className="flex-1 "
+              className="flex-1"
+              onClick={handleAnimalRegistration}
             >
               <Button.Label>Quero divulgar um animal</Button.Label>
             </Button>

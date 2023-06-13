@@ -4,6 +4,7 @@ import { Drawer } from '../../components/Drawer';
 
 import { Outlet } from 'react-router-dom';
 import { Route } from '../../utils/Routes';
+import { PrivateComponent } from '../../components/PrivateComponent';
 
 export function RootProfile() {
   return (
@@ -15,9 +16,23 @@ export function RootProfile() {
         </div>
         <Drawer.Item to="." iconName="BsPersonFill" label="Ver Perfil" />
         <Drawer.Item to={Route.myPets} iconName="FaPaw" label="Meus Pets" />
-        <Drawer.Item to={Route.donations} iconName="FaDonate" label="Doações" />
-        <Drawer.Item to={Route.adopters} iconName="FaUsers" label="Adotantes" />
-        <Drawer.Item to={Route.animals} iconName="FaPaw" label="Animais " />
+        <PrivateComponent roleUser="admin">
+          <Drawer.Item
+            to={Route.donations}
+            iconName="FaDonate"
+            label="Doações"
+          />
+        </PrivateComponent>
+        <PrivateComponent roleUser="admin">
+          <Drawer.Item
+            to={Route.adopters}
+            iconName="FaUsers"
+            label="Adotantes"
+          />
+        </PrivateComponent>
+        <PrivateComponent roleUser="admin">
+          <Drawer.Item to={Route.animals} iconName="FaPaw" label="Animais " />
+        </PrivateComponent>
       </Drawer>
 
       <div className="w-full px-5 pt-4">
