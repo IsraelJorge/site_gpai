@@ -14,7 +14,7 @@ export const useUserCreate = () => {
       return Api.post('/user', data);
     },
     onSuccess() {
-      toast.success('Cadastrado realizado com sucesso.');
+      toast.success('Cadastro realizado com sucesso.');
       navigate(Route.login);
     },
     onError(error) {
