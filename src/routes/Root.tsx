@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { DialogProvider } from '../context/DialogProvider';
 import { Dialog } from '../components/Dialog';
 
-export function Root() {
+export default function Root() {
   const routePath = useLocation();
 
   const onTop = () => {

@@ -5,6 +5,7 @@ import { Card } from '../components/Card';
 import { Main } from '../components/layouts/Main';
 import { useAnimalsGet } from '../services/datasources/hooks/useAnimalsGet';
 import { textSlice } from '../utils/textSlice';
+import { Loading } from '../components/Loading';
 
 const typeAdopt = [
   { label: 'Todas as Especies', value: 'todasAsEspecies' },
@@ -26,7 +27,8 @@ const typeStature = [
 ];
 
 export function Adopt() {
-  const { data } = useAnimalsGet();
+  const { data, isLoading } = useAnimalsGet();
+
   return (
     <Main>
       <main>
@@ -72,15 +74,21 @@ export function Adopt() {
           <Button children="Buscar" />
         </section>
         <section className="flex flex-wrap justify-between gap-10 py-5">
-          {data?.map((animal) => (
-            <Card
-              id={animal.id}
-              image={animal.images[0].urls.split(',')[0]}
-              label={animal.name}
-              description={textSlice(animal.description)}
-              key={animal.id}
-            />
-          ))}
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <>
+              {data?.map((animal) => (
+                <Card
+                  id={animal.id}
+                  image={animal.images[0].urls.split(',')[0]}
+                  label={animal.name}
+                  description={textSlice(animal.description)}
+                  key={animal.id}
+                />
+              ))}
+            </>
+          )}
         </section>
         <section className="flex justify-end gap-2 mb-7">
           <Button children="1" variant={'outline'} />
