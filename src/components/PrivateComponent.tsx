@@ -15,7 +15,7 @@ export const PrivateComponent = ({
   if (isLogged) {
     const isRoleAcess = roleUser === role?.name;
 
-    if (isLogged && isRoleAcess) {
+    if (isLogged() && isRoleAcess) {
       return children;
     }
   }

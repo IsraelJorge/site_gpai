@@ -1,19 +1,19 @@
+import { useNavigate } from 'react-router-dom';
+
 import HandsImage from '../assets/animal-therapy.svg';
 import DogImage from '../assets/dogImage.png';
 import MenAndDogImage from '../assets/men-and-dog.svg';
 import WomenAndCatImage from '../assets/women-and-cat .svg';
-
 import { Button } from '../components/Button';
 import { Card } from '../components/Card';
-import { Paws } from '../components/Paws';
-import { Route } from '../utils/Routes';
 import { Main } from '../components/layouts/Main';
+import { Loading } from '../components/Loading';
+import { Paws } from '../components/Paws';
 import { useAuth } from '../context/AuthProvider/useAuth';
-import { useNavigate } from 'react-router-dom';
 import { useDialog } from '../context/DialogProvider';
 import { useAnimalsGet } from '../services/datasources/hooks/useAnimalsGet';
+import { Route } from '../utils/Routes';
 import { textSlice } from '../utils/textSlice';
-import { Loading } from '../components/Loading';
 
 export function Home() {
   const { isLogged } = useAuth();

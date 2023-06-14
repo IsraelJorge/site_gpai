@@ -1,24 +1,26 @@
 import { useForm } from 'react-hook-form';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+
+import { IUser } from '../@types/types';
 import { Breadcrumb } from '../components/Breadcrumb';
 import { Button } from '../components/Button';
 import { ContainerInputFile } from '../components/ContainerInputFile';
+import { Gallery } from '../components/Gallery';
 import { Input } from '../components/Input';
 import { InputFile } from '../components/InputFile';
-import { Select } from '../components/Select';
+import { InputRadio } from '../components/InputRadio';
 import { Main } from '../components/layouts/Main';
+import { Select } from '../components/Select';
+import { TextArea } from '../components/TextArea';
+import { getUserLocalStorage } from '../context/AuthProvider/utils';
+import { useAnimalCreate } from '../services/datasources/hooks/useAnimalCreate';
 import {
   AnimalForm,
   AnimalSchema,
 } from '../services/datasources/schemas/AnimalSchema';
 import { generateLinkPreview } from '../utils/generateLinkPreview';
-import { Gallery } from '../components/Gallery';
-import { TextArea } from '../components/TextArea';
-import { InputRadio } from '../components/InputRadio';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useAnimalCreate } from '../services/datasources/hooks/useAnimalCreate';
 // import { useAuth } from '../context/AuthProvider/useAuth';
-import { getUserLocalStorage } from '../context/AuthProvider/utils';
-import { IUser } from '../@types/types';
 
 const optionsSex = [
   { label: 'Macho', value: 'Macho' },

@@ -1,5 +1,7 @@
-import clsx from 'clsx';
 import { Link } from 'react-router-dom';
+
+import clsx from 'clsx';
+
 import { Route } from '../utils/Routes';
 
 type CardProps = {

@@ -1,4 +1,5 @@
 import { any, z } from 'zod';
+
 import { Message } from './messages/messagesSchema';
 
 export const AnimalSchema = z.object({

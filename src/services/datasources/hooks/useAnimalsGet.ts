@@ -1,8 +1,8 @@
 import { useQuery } from 'react-query';
 
-import { key } from '../utils/querykeys';
-import { Api } from '../../lib/axios';
 import { AnimalData } from '../../../@types/types';
+import { Api } from '../../lib/axios';
+import { key } from '../utils/querykeys';
 
 export function useAnimalsGet() {
   return useQuery<AnimalData[]>(key.animalsGet, {

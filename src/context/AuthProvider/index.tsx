@@ -1,8 +1,10 @@
 import { createContext, useCallback, useEffect, useState } from 'react';
 import { useMutation } from 'react-query';
-
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+
+import { AxiosError } from 'axios';
+
 import {
   IAuthProvider,
   IContextAuth,
@@ -11,10 +13,9 @@ import {
   ReponseDataError,
 } from '../../@types/types';
 import { loginRequest } from '../../services/datasources/loginRequest';
+import { handleErrorRequest } from '../../utils/errorsRequest';
 import { Route } from '../../utils/Routes';
 import { getUserLocalStorage, setUserLocalStorage } from './utils';
-import { AxiosError } from 'axios';
-import { handleErrorRequest } from '../../utils/errorsRequest';
 
 export const AuthContext = createContext<IContextAuth>({} as IContextAuth);
 
@@ -44,7 +45,7 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
     try {
       const user = getUserLocalStorage();
 
-      if (!Boolean(user)) return false;
+      if (!user) return false;
 
       return true;
     } catch (error) {

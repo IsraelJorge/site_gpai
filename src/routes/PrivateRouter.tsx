@@ -1,6 +1,7 @@
 import { Navigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthProvider/useAuth';
+
 import { IUser, Roles } from '../@types/types';
+import { useAuth } from '../context/AuthProvider/useAuth';
 import { getUserLocalStorage } from '../context/AuthProvider/utils';
 
 type PrivateRouterProps = {

@@ -1,15 +1,15 @@
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { Breadcrumb } from '../components/Breadcrumb';
+import { Button } from '../components/Button';
 import { GalleryAnimal } from '../components/GalleryAnimal';
 import { Icon } from '../components/Icon';
 import { Main } from '../components/layouts/Main';
-
-import { Button } from '../components/Button';
-import { Breadcrumb } from '../components/Breadcrumb';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Loading } from '../components/Loading';
+import { useDialog } from '../context/DialogProvider';
 import { useAnimalsFind } from '../services/datasources/hooks/useAnimalsFind';
 import { formateDate } from '../utils/formateDate';
-import { useDialog } from '../context/DialogProvider';
 import { Route } from '../utils/Routes';
-import { Loading } from '../components/Loading';
 
 export function AnimalDetails() {
   const params = useParams() as { id: string };

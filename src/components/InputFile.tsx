@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import {
   ChangeEvent,
   DragEvent,
@@ -7,6 +6,8 @@ import {
   useState,
 } from 'react';
 import { Control, useController } from 'react-hook-form';
+
+import clsx from 'clsx';
 
 import { Icon } from './Icon';
 

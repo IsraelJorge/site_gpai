@@ -1,5 +1,6 @@
-import { Dialog as Box, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
+
+import { Dialog as Box, Transition } from '@headlessui/react';
 
 import { useDialog } from '../context/DialogProvider';
 import { Button } from './Button';
