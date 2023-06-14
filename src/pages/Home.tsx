@@ -1,8 +1,8 @@
 import HandsImage from '../assets/animal-therapy.svg';
 import DogImage from '../assets/dogImage.png';
-import ImageCat from '../assets/gato-.jpg';
 import MenAndDogImage from '../assets/men-and-dog.svg';
 import WomenAndCatImage from '../assets/women-and-cat .svg';
+
 import { Button } from '../components/Button';
 import { Card } from '../components/Card';
 import { Paws } from '../components/Paws';
@@ -11,6 +11,8 @@ import { Main } from '../components/layouts/Main';
 import { useAuth } from '../context/AuthProvider/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { useDialog } from '../context/DialogProvider';
+import { useAnimalsGet } from '../services/datasources/hooks/useAnimalsGet';
+import { textSlice } from '../utils/textSlice';
 
 export function Home() {
   const { isLogged } = useAuth();
@@ -38,6 +40,8 @@ export function Home() {
       ],
     });
   };
+
+  const { data } = useAnimalsGet();
 
   return (
     <Main>
@@ -85,12 +89,12 @@ export function Home() {
         </p>
 
         <div className="flex flex-wrap justify-between gap-5 pt-12">
-          {new Array(8).fill('').map((_, index) => (
+          {data?.map((animal) => (
             <Card
-              image={ImageCat}
-              label="Federico"
-              description="If a dog chews shoes whose shoes does he choose?"
-              key={index}
+              image={animal.images[0].urls.split(',')[0]}
+              label={animal.name}
+              description={textSlice(animal.description)}
+              key={animal.id}
             />
           ))}
         </div>
