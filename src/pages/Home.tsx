@@ -89,8 +89,9 @@ export function Home() {
         </p>
 
         <div className="flex flex-wrap justify-between gap-5 pt-12">
-          {data?.map((animal) => (
+          {data?.slice(0, 8)?.map((animal) => (
             <Card
+              id={animal.id}
               image={animal.images[0].urls.split(',')[0]}
               label={animal.name}
               description={textSlice(animal.description)}

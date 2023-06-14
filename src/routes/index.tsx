@@ -18,6 +18,7 @@ import { Adopters } from '../pages/profile/Adopters';
 import { Animals } from '../pages/profile/Animals';
 import { AnimalResistration } from '../pages/AnimalResistration';
 import { PrivateRouter } from './PrivateRouter';
+import { AnimalDetails } from '../pages/AnimalDetails';
 
 export const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ export const router = createBrowserRouter([
       {
         path: Route.animalRegistration,
         element: <AnimalResistration />,
+      },
+      {
+        path: '/animal-details/:id',
+        element: <AnimalDetails />,
       },
       {
         path: Route.profile,

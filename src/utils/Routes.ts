@@ -13,4 +13,5 @@ export const Route = {
   adopters: 'adopters',
   animals: 'animals',
   animalRegistration: '/animal-resistration',
+  animalDetails: (id: number | string) => `/animal-details/${id}`,
 };

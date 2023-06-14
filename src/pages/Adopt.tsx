@@ -1,12 +1,6 @@
 import { Breadcrumb } from '../components/Breadcrumb';
 import { Button } from '../components/Button';
 import { Select } from '../components/Select';
-import ImageCat from '../assets/gato-.jpg';
-import ImageAurora from '../assets/Aurora.png';
-import ImageCaramelo from '../assets/caramelo.png';
-import ImageLittle from '../assets/LittleCats.png';
-import ImageFederico from '../assets/Federico.png';
-import ImageRodolfo from '../assets/Rodolfo.png';
 import { Card } from '../components/Card';
 import { Main } from '../components/layouts/Main';
 import { useAnimalsGet } from '../services/datasources/hooks/useAnimalsGet';
@@ -80,6 +74,7 @@ export function Adopt() {
         <section className="flex flex-wrap justify-between gap-10 py-5">
           {data?.map((animal) => (
             <Card
+              id={animal.id}
               image={animal.images[0].urls.split(',')[0]}
               label={animal.name}
               description={textSlice(animal.description)}
