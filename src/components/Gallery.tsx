@@ -5,8 +5,8 @@ import {
   Item,
 } from 'react-photoswipe-gallery';
 
-import { DataSourceArray } from 'photoswipe';
 import clsx from 'clsx';
+import { DataSourceArray } from 'photoswipe';
 
 type GalleryProps = {
   photos: string[] | undefined;

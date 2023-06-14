@@ -1,6 +1,7 @@
 import { z } from 'zod';
-import { Message } from './messages/messagesSchema';
+
 import { cpfValidator } from '../validators/cpfValidator';
+import { Message } from './messages/messagesSchema';
 
 export const UserSchema = z.object({
   name: z.string().min(6, Message.min(6)).nonempty(Message.required),

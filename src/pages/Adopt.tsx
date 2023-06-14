@@ -1,11 +1,11 @@
 import { Breadcrumb } from '../components/Breadcrumb';
 import { Button } from '../components/Button';
-import { Select } from '../components/Select';
 import { Card } from '../components/Card';
 import { Main } from '../components/layouts/Main';
+import { Loading } from '../components/Loading';
+import { Select } from '../components/Select';
 import { useAnimalsGet } from '../services/datasources/hooks/useAnimalsGet';
 import { textSlice } from '../utils/textSlice';
-import { Loading } from '../components/Loading';
 
 const typeAdopt = [
   { label: 'Todas as Especies', value: 'todasAsEspecies' },

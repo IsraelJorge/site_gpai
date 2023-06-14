@@ -4,12 +4,11 @@ import { Link } from 'react-router-dom';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
-import LogoGpai from '../assets/logo-gpai.svg';
 import Avatar from '../assets/avatarIcon.svg';
-
+import LogoGpai from '../assets/logo-gpai.svg';
+import { useAuth } from '../context/AuthProvider/useAuth';
 import { Route } from '../utils/Routes';
 import { Button } from './Button';
-import { useAuth } from '../context/AuthProvider/useAuth';
 
 const navigation = [
   { name: 'Adote', to: Route.adopt },

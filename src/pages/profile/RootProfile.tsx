@@ -1,10 +1,9 @@
-import imgUser from '../../assets/Frame 46.png';
-
-import { Drawer } from '../../components/Drawer';
-
 import { Outlet } from 'react-router-dom';
-import { Route } from '../../utils/Routes';
+
+import imgUser from '../../assets/Frame 46.png';
+import { Drawer } from '../../components/Drawer';
 import { PrivateComponent } from '../../components/PrivateComponent';
+import { Route } from '../../utils/Routes';
 
 export function RootProfile() {
   return (

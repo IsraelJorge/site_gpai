@@ -1,9 +1,9 @@
 import { useMutation } from 'react-query';
-import { Api } from '../../lib/axios';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { Route } from '../../../utils/Routes';
-import { useNavigate } from 'react-router-dom';
+import { Api } from '../../lib/axios';
 import { UserForm } from '../schemas/UserSchema';
 
 export const useUserCreate = () => {

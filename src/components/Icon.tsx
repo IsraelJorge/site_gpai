@@ -1,8 +1,8 @@
+import * as BsIcons from 'react-icons/bs';
 import * as FaIcons from 'react-icons/fa';
 import type { IconBaseProps } from 'react-icons/lib';
 import * as MdIcons from 'react-icons/md';
 import * as TfiIcons from 'react-icons/tfi';
-import * as BsIcons from 'react-icons/bs';
 
 export interface IconProps extends IconBaseProps {
   name: string;

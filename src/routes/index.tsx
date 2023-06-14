@@ -1,27 +1,25 @@
+import { Suspense, lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
+import { Loading } from '../components/Loading';
 import { About } from '../pages/About';
 import { Adopt } from '../pages/Adopt';
+import { AnimalDetails } from '../pages/AnimalDetails';
+import { AnimalResistration } from '../pages/AnimalResistration';
 import { BePart } from '../pages/BePart';
 import { Contact } from '../pages/Contact';
 import { Donate } from '../pages/Donate';
 import { Home } from '../pages/Home';
 import { Login } from '../pages/Login';
-import { Route } from '../utils/Routes';
-// import { Root } from './Root';
-import { UserRegistration } from '../pages/UserResistration';
-import { RootProfile } from '../pages/profile/RootProfile';
-import { Profile } from '../pages/profile/Profile';
-import { MyPets } from '../pages/profile/MyPets';
-import { Donations } from '../pages/profile/Donations';
 import { Adopters } from '../pages/profile/Adopters';
 import { Animals } from '../pages/profile/Animals';
-import { AnimalResistration } from '../pages/AnimalResistration';
+import { Donations } from '../pages/profile/Donations';
+import { MyPets } from '../pages/profile/MyPets';
+import { Profile } from '../pages/profile/Profile';
+import { RootProfile } from '../pages/profile/RootProfile';
+import { UserRegistration } from '../pages/UserResistration';
+import { Route } from '../utils/Routes';
 import { PrivateRouter } from './PrivateRouter';
-import { AnimalDetails } from '../pages/AnimalDetails';
-
-import { Suspense, lazy } from 'react';
-import { Loading } from '../components/Loading';
 
 const Root = lazy(() => import('./Root'));
 

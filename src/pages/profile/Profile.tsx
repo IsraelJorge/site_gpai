@@ -1,5 +1,4 @@
 import imgUser from '../../assets/Frame 46.png';
-
 import { Button } from '../../components/Button';
 import { Description } from '../../components/Description';
 

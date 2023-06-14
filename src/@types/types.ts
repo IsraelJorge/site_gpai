@@ -21,7 +21,7 @@ export interface IUser {
 export interface IContextAuth extends IUser {
   authenticate: UseMutateFunction<any, unknown, IloginRequest, unknown>;
   logout: () => void;
-  isLogged: () => Boolean;
+  isLogged: () => boolean;
 }
 
 export interface IAuthProvider {
