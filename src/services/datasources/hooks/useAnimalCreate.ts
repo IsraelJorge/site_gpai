@@ -1,18 +1,20 @@
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import { Api } from '../../lib/axios';
 import { AnimalForm } from '../schemas/AnimalSchema';
 import { toast } from 'react-toastify';
 
 import { Route } from '../../../utils/Routes';
 import { useNavigate } from 'react-router-dom';
+import { key } from '../utils/querykeys';
 
 export const useAnimalCreate = () => {
   const navigate = useNavigate();
+
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: (data: AnimalForm) => {
       const formData = new FormData();
-
-      console.log(data.photoFiles);
 
       formData.append('userId', String(data.userId));
       formData.append('name', data.name);
@@ -43,6 +45,7 @@ export const useAnimalCreate = () => {
     },
     onSuccess() {
       toast.success('Pet cadastrado com sucesso.');
+      queryClient.invalidateQueries(key.animalsGet);
       navigate(Route.home);
     },
     onError(error) {

@@ -34,7 +34,7 @@ export function Card({
       </figure>
       <div
         className={clsx('card-body text-base-100 bg-secondary ', {
-          'px-5 pt-5 pb-8': variant === 'default',
+          'h-40 px-5 pt-5 pb-8': variant === 'default',
           'px-3 pt-3 pb-0': variant === 'donate',
         })}
       >

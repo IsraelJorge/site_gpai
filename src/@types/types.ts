@@ -38,3 +38,28 @@ export type ReponseDataError = {
 };
 
 export type Roles = 'authenticated' | 'admin';
+
+export interface AnimalData {
+  id: number;
+  name: string;
+  specie: string;
+  race: string;
+  stature: string;
+  sex: string;
+  dateBirth: string;
+  description: string;
+  disability: boolean;
+  vaccinated: boolean;
+  disease: boolean;
+  disabilityDescription: string;
+  diseaseDescription: string;
+  craetedAt: string;
+  userId: number;
+  images: Image[];
+}
+
+export interface Image {
+  id: number;
+  urls: string;
+  animalId: number;
+}

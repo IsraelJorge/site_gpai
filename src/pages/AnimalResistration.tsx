@@ -16,7 +16,9 @@ import { TextArea } from '../components/TextArea';
 import { InputRadio } from '../components/InputRadio';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAnimalCreate } from '../services/datasources/hooks/useAnimalCreate';
-import { useAuth } from '../context/AuthProvider/useAuth';
+// import { useAuth } from '../context/AuthProvider/useAuth';
+import { getUserLocalStorage } from '../context/AuthProvider/utils';
+import { IUser } from '../@types/types';
 
 const optionsSex = [
   { label: 'Macho', value: 'Macho' },
@@ -35,7 +37,8 @@ const optionsSize = [
 ];
 
 export function AnimalResistration() {
-  const { id } = useAuth();
+  // const { id } = useAuth(); //TODO : Verificar pq o auth está vindo null ao cadastrar animal
+  const user = getUserLocalStorage() as IUser | null;
 
   const {
     register,
@@ -45,6 +48,9 @@ export function AnimalResistration() {
     handleSubmit,
   } = useForm<AnimalForm>({
     resolver: zodResolver(AnimalSchema),
+    defaultValues: {
+      userId: user?.id,
+    },
   });
 
   const photoFiles = watch('photoFiles') as File[];
@@ -67,12 +73,8 @@ export function AnimalResistration() {
         <h1 className="text-4xl font-bold my-3">Cadastro do Pet</h1>
 
         <form onSubmit={handleSubmit(handleSubmitData)} className="mt-10">
-          <input
-            type="hidden"
-            {...register('userId', {
-              value: id,
-            })}
-          />
+          <input type="hidden" {...register('userId')} />
+
           <Input label="Nome do Pet" {...register('name')}>
             <Input.Error message={errors.name?.message} />
           </Input>
@@ -158,12 +160,12 @@ export function AnimalResistration() {
                   <InputRadio
                     label="Sim"
                     value="true"
-                    {...register('disability')}
+                    {...register('disability')} //TODO : verificar pq os campos não trocam os values para true
                   />
                   <InputRadio
                     label="Não"
                     value="false"
-                    {...register('disability')}
+                    {...register('disability')} //TODO : verificar pq os campos não trocam os values false
                   />
                 </div>
               </div>
