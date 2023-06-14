@@ -42,7 +42,10 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
 
   const isLogged = useCallback(() => {
     try {
-      getUserLocalStorage();
+      const user = getUserLocalStorage();
+
+      if (!Boolean(user)) return false;
+
       return true;
     } catch (error) {
       return false;

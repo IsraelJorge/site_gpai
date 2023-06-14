@@ -1,6 +1,9 @@
 import clsx from 'clsx';
+import { Link } from 'react-router-dom';
+import { Route } from '../utils/Routes';
 
 type CardProps = {
+  id?: number;
   image: string;
   label: string;
   description?: string;
@@ -8,6 +11,7 @@ type CardProps = {
 };
 
 export function Card({
+  id,
   image,
   label,
   description,
@@ -43,7 +47,11 @@ export function Card({
             'text-center justify-center text-base': variant === 'donate',
           })}
         >
-          {label}
+          {variant === 'default' ? (
+            <Link to={Route.animalDetails(id!)}>{label}</Link>
+          ) : (
+            <>{label}</>
+          )}
         </h2>
         {variant === 'default' && <p>{description}</p>}
       </div>

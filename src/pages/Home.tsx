@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDialog } from '../context/DialogProvider';
 import { useAnimalsGet } from '../services/datasources/hooks/useAnimalsGet';
 import { textSlice } from '../utils/textSlice';
+import { Loading } from '../components/Loading';
 
 export function Home() {
   const { isLogged } = useAuth();
@@ -41,7 +42,7 @@ export function Home() {
     });
   };
 
-  const { data } = useAnimalsGet();
+  const { data, isLoading } = useAnimalsGet();
 
   return (
     <Main>
@@ -89,14 +90,21 @@ export function Home() {
         </p>
 
         <div className="flex flex-wrap justify-between gap-5 pt-12">
-          {data?.map((animal) => (
-            <Card
-              image={animal.images[0].urls.split(',')[0]}
-              label={animal.name}
-              description={textSlice(animal.description)}
-              key={animal.id}
-            />
-          ))}
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <>
+              {data?.slice(0, 8)?.map((animal) => (
+                <Card
+                  id={animal.id}
+                  image={animal.images[0].urls.split(',')[0]}
+                  label={animal.name}
+                  description={textSlice(animal.description)}
+                  key={animal.id}
+                />
+              ))}
+            </>
+          )}
         </div>
       </section>
       <section className="pt-12">

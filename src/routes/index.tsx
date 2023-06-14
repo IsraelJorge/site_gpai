@@ -8,7 +8,7 @@ import { Donate } from '../pages/Donate';
 import { Home } from '../pages/Home';
 import { Login } from '../pages/Login';
 import { Route } from '../utils/Routes';
-import { Root } from './Root';
+// import { Root } from './Root';
 import { UserRegistration } from '../pages/UserResistration';
 import { RootProfile } from '../pages/profile/RootProfile';
 import { Profile } from '../pages/profile/Profile';
@@ -18,11 +18,27 @@ import { Adopters } from '../pages/profile/Adopters';
 import { Animals } from '../pages/profile/Animals';
 import { AnimalResistration } from '../pages/AnimalResistration';
 import { PrivateRouter } from './PrivateRouter';
+import { AnimalDetails } from '../pages/AnimalDetails';
+
+import { Suspense, lazy } from 'react';
+import { Loading } from '../components/Loading';
+
+const Root = lazy(() => import('./Root'));
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <Root />,
+    element: (
+      <Suspense
+        fallback={
+          <div className="w-full h-screen">
+            <Loading />
+          </div>
+        }
+      >
+        <Root />
+      </Suspense>
+    ),
     children: [
       {
         path: Route.home,
@@ -59,6 +75,10 @@ export const router = createBrowserRouter([
       {
         path: Route.animalRegistration,
         element: <AnimalResistration />,
+      },
+      {
+        path: '/animal-details/:id',
+        element: <AnimalDetails />,
       },
       {
         path: Route.profile,
