@@ -1,26 +1,42 @@
+import { Suspense, lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
+import { Loading } from '../components/Loading';
 import { About } from '../pages/About';
 import { Adopt } from '../pages/Adopt';
+import { AnimalDetails } from '../pages/AnimalDetails';
+import { AnimalResistration } from '../pages/AnimalResistration';
 import { BePart } from '../pages/BePart';
 import { Contact } from '../pages/Contact';
 import { Donate } from '../pages/Donate';
 import { Home } from '../pages/Home';
 import { Login } from '../pages/Login';
-import { Route } from '../utils/Routes';
-import { Root } from './Root';
-import { UserRegistration } from '../pages/UserResistration';
-import { RootProfile } from '../pages/profile/RootProfile';
-import { Profile } from '../pages/profile/Profile';
-import { MyPets } from '../pages/profile/MyPets';
-import { Donations } from '../pages/profile/Donations';
 import { Adopters } from '../pages/profile/Adopters';
 import { Animals } from '../pages/profile/Animals';
+import { Donations } from '../pages/profile/Donations';
+import { MyPets } from '../pages/profile/MyPets';
+import { Profile } from '../pages/profile/Profile';
+import { RootProfile } from '../pages/profile/RootProfile';
+import { UserRegistration } from '../pages/UserResistration';
+import { Route } from '../utils/Routes';
+import { PrivateRouter } from './PrivateRouter';
+
+const Root = lazy(() => import('./Root'));
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <Root />,
+    element: (
+      <Suspense
+        fallback={
+          <div className="w-full h-screen">
+            <Loading />
+          </div>
+        }
+      >
+        <Root />
+      </Suspense>
+    ),
     children: [
       {
         path: Route.home,
@@ -55,28 +71,56 @@ export const router = createBrowserRouter([
         element: <UserRegistration />,
       },
       {
+        path: Route.animalRegistration,
+        element: <AnimalResistration />,
+      },
+      {
+        path: '/animal-details/:id',
+        element: <AnimalDetails />,
+      },
+      {
         path: Route.profile,
         element: <RootProfile />,
         children: [
           {
             path: '',
-            element: <Profile />,
+            element: (
+              <PrivateRouter rolesAcess={['authenticated', 'admin']}>
+                <Profile />
+              </PrivateRouter>
+            ),
           },
           {
             path: Route.myPets,
-            element: <MyPets />,
+            element: (
+              <PrivateRouter rolesAcess={['authenticated', 'admin']}>
+                <MyPets />
+              </PrivateRouter>
+            ),
           },
           {
             path: Route.donations,
-            element: <Donations />,
+            element: (
+              <PrivateRouter rolesAcess={['admin']}>
+                <Donations />
+              </PrivateRouter>
+            ),
           },
           {
             path: Route.adopters,
-            element: <Adopters />,
+            element: (
+              <PrivateRouter rolesAcess={['admin']}>
+                <Adopters />
+              </PrivateRouter>
+            ),
           },
           {
             path: Route.animals,
-            element: <Animals />,
+            element: (
+              <PrivateRouter rolesAcess={['admin']}>
+                <Animals />
+              </PrivateRouter>
+            ),
           },
         ],
       },

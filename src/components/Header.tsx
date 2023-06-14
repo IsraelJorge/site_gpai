@@ -4,12 +4,11 @@ import { Link } from 'react-router-dom';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
-import LogoGpai from '../assets/logo-gpai.svg';
 import Avatar from '../assets/avatarIcon.svg';
-
+import LogoGpai from '../assets/logo-gpai.svg';
+import { useAuth } from '../context/AuthProvider/useAuth';
 import { Route } from '../utils/Routes';
 import { Button } from './Button';
-import { useAuth } from '../context/AuthProvider/useAuth';
 
 const navigation = [
   { name: 'Adote', to: Route.adopt },
@@ -74,7 +73,7 @@ export function Header() {
 
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {/* Profile dropdown */}
-                {isLogged ? (
+                {isLogged() ? (
                   <Menu as="div" className="relative ml-3">
                     <div>
                       <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-base-100">

@@ -12,7 +12,7 @@ const buttonStyles = cva(['flex', 'flex-row', 'gap-1'], {
         'btn',
         'border-2',
         'border-primary',
-        'bg-base-100',
+        'bg-transparent',
         'text-primary',
         'hover:text-neutral',
         'hover:bg-primary',
@@ -30,6 +30,10 @@ const buttonStyles = cva(['flex', 'flex-row', 'gap-1'], {
     },
   },
 });
+
+export type Variants = VariantProps<typeof buttonStyles>;
+
+export type ButtonType = Variants['variant'];
 
 export type ButtonAs = 'Link' | 'Button' | 'NavLink';
 

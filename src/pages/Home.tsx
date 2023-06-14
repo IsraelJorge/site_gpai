@@ -1,15 +1,49 @@
+import { useNavigate } from 'react-router-dom';
+
 import HandsImage from '../assets/animal-therapy.svg';
 import DogImage from '../assets/dogImage.png';
-import ImageCat from '../assets/gato-.jpg';
 import MenAndDogImage from '../assets/men-and-dog.svg';
 import WomenAndCatImage from '../assets/women-and-cat .svg';
 import { Button } from '../components/Button';
 import { Card } from '../components/Card';
-import { Paws } from '../components/Paws';
-import { Route } from '../utils/Routes';
 import { Main } from '../components/layouts/Main';
+import { Loading } from '../components/Loading';
+import { Paws } from '../components/Paws';
+import { useAuth } from '../context/AuthProvider/useAuth';
+import { useDialog } from '../context/DialogProvider';
+import { useAnimalsGet } from '../services/datasources/hooks/useAnimalsGet';
+import { Route } from '../utils/Routes';
+import { textSlice } from '../utils/textSlice';
 
 export function Home() {
+  const { isLogged } = useAuth();
+  const navigate = useNavigate();
+  const { showDialog, closeDialog } = useDialog();
+
+  const handleAnimalRegistration = () => {
+    if (isLogged()) return navigate(Route.animalRegistration);
+
+    showDialog({
+      title: 'Login necessário',
+      message: 'Faça login para poder divulgar pets para adoção.',
+      buttons: [
+        {
+          label: 'Cancelar',
+          type: 'outline',
+          onClick: () => closeDialog(),
+        },
+        {
+          label: 'Ir para login',
+          icon: 'MdLogin',
+          type: 'default',
+          onClick: () => navigate(Route.login),
+        },
+      ],
+    });
+  };
+
+  const { data, isLoading } = useAnimalsGet();
+
   return (
     <Main>
       <section className="flex flex-col md:flex-row justify-between gap-7 ">
@@ -27,7 +61,11 @@ export function Home() {
             <Button as="Link" to={Route.adopt} className="flex-1">
               <Button.Label>Quero Adotar</Button.Label>
             </Button>
-            <Button variant="outline" className="flex-1 ">
+            <Button
+              variant="outline"
+              className="flex-1"
+              onClick={handleAnimalRegistration}
+            >
               <Button.Label>Quero divulgar um animal</Button.Label>
             </Button>
           </div>
@@ -52,14 +90,21 @@ export function Home() {
         </p>
 
         <div className="flex flex-wrap justify-between gap-5 pt-12">
-          {new Array(8).fill('').map((_, index) => (
-            <Card
-              image={ImageCat}
-              label="Federico"
-              description="If a dog chews shoes whose shoes does he choose?"
-              key={index}
-            />
-          ))}
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <>
+              {data?.slice(0, 8)?.map((animal) => (
+                <Card
+                  id={animal.id}
+                  image={animal.images[0].urls.split(',')[0]}
+                  label={animal.name}
+                  description={textSlice(animal.description)}
+                  key={animal.id}
+                />
+              ))}
+            </>
+          )}
         </div>
       </section>
       <section className="pt-12">

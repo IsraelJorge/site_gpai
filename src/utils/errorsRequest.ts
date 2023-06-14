@@ -1,6 +1,8 @@
-import axios, { AxiosError } from 'axios';
-import { ReponseDataError } from '../@types/types';
 import { toast } from 'react-toastify';
+
+import axios, { AxiosError } from 'axios';
+
+import { ReponseDataError } from '../@types/types';
 
 export function handleErrorRequest(error: AxiosError<ReponseDataError>) {
   if (axios.isAxiosError(error)) {

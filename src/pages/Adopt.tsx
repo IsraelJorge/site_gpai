@@ -1,14 +1,11 @@
 import { Breadcrumb } from '../components/Breadcrumb';
 import { Button } from '../components/Button';
-import { Select } from '../components/Select';
-import ImageCat from '../assets/gato-.jpg';
-import ImageAurora from '../assets/Aurora.png';
-import ImageCaramelo from '../assets/caramelo.png';
-import ImageLittle from '../assets/LittleCats.png';
-import ImageFederico from '../assets/Federico.png';
-import ImageRodolfo from '../assets/Rodolfo.png';
 import { Card } from '../components/Card';
 import { Main } from '../components/layouts/Main';
+import { Loading } from '../components/Loading';
+import { Select } from '../components/Select';
+import { useAnimalsGet } from '../services/datasources/hooks/useAnimalsGet';
+import { textSlice } from '../utils/textSlice';
 
 const typeAdopt = [
   { label: 'Todas as Especies', value: 'todasAsEspecies' },
@@ -30,6 +27,8 @@ const typeStature = [
 ];
 
 export function Adopt() {
+  const { data, isLoading } = useAnimalsGet();
+
   return (
     <Main>
       <main>
@@ -75,20 +74,21 @@ export function Adopt() {
           <Button children="Buscar" />
         </section>
         <section className="flex flex-wrap justify-between gap-10 py-5">
-          <Card image={ImageAurora} label="Aurora" description="" />
-          <Card image={ImageCaramelo} label="Caramelo" description="" />
-          <Card image={ImageCat} label="Aurora" description="" />
-          <Card image={ImageFederico} label="Federico" description="" />
-
-          <Card image={ImageLittle} label="Little Cats" description="" />
-          <Card image={ImageRodolfo} label="Rodolfo" description="" />
-          <Card image={ImageAurora} label="Pug" description="" />
-          <Card image={ImageLittle} label="Trigêmias" description="" />
-
-          <Card image={ImageCaramelo} label="Doginho" description="" />
-          <Card image={ImageCat} label="Garfield" description="" />
-          <Card image={ImageFederico} label="Fred" description="" />
-          <Card image={ImageRodolfo} label="Dogolfo" description="" />
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <>
+              {data?.map((animal) => (
+                <Card
+                  id={animal.id}
+                  image={animal.images[0].urls.split(',')[0]}
+                  label={animal.name}
+                  description={textSlice(animal.description)}
+                  key={animal.id}
+                />
+              ))}
+            </>
+          )}
         </section>
         <section className="flex justify-end gap-2 mb-7">
           <Button children="1" variant={'outline'} />

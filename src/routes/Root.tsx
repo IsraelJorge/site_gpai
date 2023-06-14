@@ -1,11 +1,13 @@
+import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
+import { Dialog } from '../components/Dialog';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { AuthProvider } from '../context/AuthProvider';
-import { useEffect } from 'react';
+import { DialogProvider } from '../context/DialogProvider';
 
-export function Root() {
+export default function Root() {
   const routePath = useLocation();
 
   const onTop = () => {
@@ -18,13 +20,16 @@ export function Root() {
 
   return (
     <AuthProvider>
-      <div className="w-full h-full">
-        <Header />
+      <DialogProvider>
+        <Dialog />
         <div className="w-full h-full">
-          <Outlet />
+          <Header />
+          <div className="w-full h-full">
+            <Outlet />
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
+      </DialogProvider>
     </AuthProvider>
   );
 }

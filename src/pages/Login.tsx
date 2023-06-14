@@ -1,14 +1,17 @@
+import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+
 import Pets from '../assets/pets.png';
 import { Breadcrumb } from '../components/Breadcrumb';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
-import { Route } from '../utils/Routes';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { useAuth } from '../context/AuthProvider/useAuth';
-import { Link } from 'react-router-dom';
 import { Main } from '../components/layouts/Main';
+import { useAuth } from '../context/AuthProvider/useAuth';
+import { Route } from '../utils/Routes';
+
 
 const LoginSchema = z.object({
   email: z.string().email('Email inválido.').nonempty(),

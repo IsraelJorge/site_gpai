@@ -3,14 +3,24 @@ import React, { forwardRef } from 'react';
 
 import clsx from 'clsx';
 
-import { cpfMask, currencyMask } from '../utils/masks';
+import { Mask } from '../utils/masks';
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
   label: string;
   noMargin?: boolean;
-  mask?: 'cpf' | 'currency' | null;
+  mask?:
+    | 'cpf'
+    | 'currency'
+    | 'number'
+    | 'date'
+    | 'cpfAndEmail'
+    | 'cnpj'
+    | 'cpfOrCnpj'
+    | 'phone'
+    | 'zipCode'
+    | 'uppercase';
 }
 
 export const InputRoot = forwardRef<HTMLInputElement, InputProps>(
@@ -28,19 +38,39 @@ export const InputRoot = forwardRef<HTMLInputElement, InputProps>(
     ref,
   ) => {
     const handleInputOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-      if (mask === 'cpf') {
-        event.target.value = cpfMask(event.target.value);
-        onChange?.(event);
-        return;
-      }
-
-      if (mask === 'currency') {
-        event.target.value = currencyMask(event.target.value);
-        onChange?.(event);
-        return;
-      }
+      event.target.value = maskText(event.target.value);
 
       onChange?.(event);
+    };
+
+    const maskText = (value: string) => {
+      switch (mask) {
+        case 'cpf':
+          return Mask.cpf(value);
+        case 'cpfAndEmail':
+          if (value.match(/^[\d.-]+$/)) {
+            return Mask.cpf(value);
+          }
+          break;
+        case 'cnpj':
+          return Mask.cnpj(value);
+        case 'cpfOrCnpj':
+          return Mask.cpfOrCnpj(value);
+        case 'currency':
+          return Mask.currency(value);
+        case 'number':
+          return Mask.number(value);
+        case 'date':
+          return Mask.date(value);
+        case 'phone':
+          return Mask.phone(value);
+        case 'zipCode':
+          return Mask.zipCode(value);
+        case 'uppercase':
+          return value.toUpperCase();
+      }
+
+      return value;
     };
 
     return (

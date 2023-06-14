@@ -12,4 +12,6 @@ export const Route = {
   donations: 'donations',
   adopters: 'adopters',
   animals: 'animals',
+  animalRegistration: '/animal-resistration',
+  animalDetails: (id: number | string) => `/animal-details/${id}`,
 };
